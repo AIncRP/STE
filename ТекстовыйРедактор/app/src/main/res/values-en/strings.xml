@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">STE</string>
+	
+    <string name="safe">Save</string>
+	<string name="open">Open</string>
+	<string name="options">Settings</string>
+	<string name="info">Info</string>
+	<string name="exit">Exit</string>
+	<string name="choose">Select</string>
+	<string name="close">Close</string>
+	
+	<string name="saved">It\'s kept!</string>
+	<string name="save_">To keep?</string>
+	<string name="opened">It\'s loaded!</string>
+	<string name="btn_good">Cool!</string>
+	
+	<string name="yes">Yes</string>
+	<string name="nope">No</string>
+	
+	<string name="notfiles">There aren\'t files in the directory!</string>
+	<string name="namefile">Enter a file name</string>
+	<string name="copyright">Copyright © 2015 Ainc</string>
+	
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Простой Текстовый Редактор</string>
+	
+    <string name="safe">Сохранить</string>
+	<string name="open">Открыть</string>
+	<string name="options">Настройки</string>
+	<string name="info">Справка</string>
+	<string name="exit">Выход</string>
+	<string name="choose">Выбрать</string>
+	<string name="close">Закрыть</string>
+	
+	<string name="saved">Сохранено!</string>
+	<string name="save_">Сохранить?</string>
+	<string name="opened">Загружено!</string>
+	<string name="btn_good">Отлично!</string>
+	
+	<string name="yes">Да</string>
+	<string name="nope">Нет</string>
+	
+	<string name="notfiles">Нет файлов в каталоге!</string>
+	<string name="namefile">Введите имя файла</string>
+	<string name="copyright">Copyright © 2015 Ainc</string>
+	
+</resources>

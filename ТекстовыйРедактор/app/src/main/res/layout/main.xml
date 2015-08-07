@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/mainBackground">
+
+	<ScrollView
+		android:layout_height="match_parent"
+		android:layout_width="match_parent"
+		android:id="@+id/sv"
+		android:alpha="1.0"
+		android:layout_marginLeft="10dp"
+		android:layout_marginRight="10dp">
+
+		<EditText
+			android:layout_height="match_parent"
+			android:inputType="textMultiLine"
+			android:layout_width="match_parent"
+			android:textColor="#000000"
+			android:singleLine="false"
+			android:id="@+id/et"/>
+
+	</ScrollView>
+
+	<android.support.design.widget.FloatingActionButton
+		android:id="@+id/fab"	
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="20dp"
+		android:layout_gravity="bottom|end"
+		android:src="@drawable/ic_butt"
+		app:pressedTranslationZ="12dp"/>
+
+</FrameLayout>
+
