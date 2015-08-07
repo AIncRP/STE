@@ -66,9 +66,7 @@ public class MainActivity extends AppCompatActivity{
 				openDialog();
 				break;
 			case 2:
-				//Фигня
-				Intent intent = new Intent(MainActivity.this, Preferences.class);
-				startActivity(intent);
+				//
 				break;
 			case 3:
 				//Показывает диалог с id = 1
