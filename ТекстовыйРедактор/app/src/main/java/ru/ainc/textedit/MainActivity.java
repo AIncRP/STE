@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity{
 		
 		et = (EditText) findViewById(R.id.et); //Нахождение по id главное поле ввода
 		fab = (FloatingActionButton) findViewById(R.id.fab);
-				
+		
 		dir = Environment.getExternalStorageDirectory().toString() + MY_DIRECTORY; //Путь к моей директории
 		//Иницилизация моего класса с обработкой файлов, 
 		//принимающий в конструкторе путь к моей директории
@@ -69,8 +69,7 @@ public class MainActivity extends AppCompatActivity{
 				//
 				break;
 			case 3:
-				//Показывает диалог с id = 1
-				showDialog(1);
+				dialogInfo();
 				break;
 			case 4:
 				//Закрывает главное активити
@@ -88,33 +87,20 @@ public class MainActivity extends AppCompatActivity{
 		return super.onPrepareOptionsMenu(menu);
 	}
 
-	//Создает диалоги с id
-	@Override
-	protected Dialog onCreateDialog(int id){
-		switch(id){
-			case 1:
-				AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this); //Строитель диалогов, принимающий контекст
-				adb.setTitle(R.string.app_name); //Заголовок диалога
-				adb.setIcon(R.drawable.ic_launcher); //Иконка диалога
-				adb.setMessage("Copyright © 2015 Ainc" + "\n\n" + "STE версия 0.8.1 \n" +
-														   "Список изменений: \n" +
-														   "-Добавлена плавающая кнопка[Квадратная] \n" +
-														   "-Локализиция на английский язык \n" +
-														   "-Маленькие изменение в коде программы \n" +
-														   "Ожидания в следующих версиях: \n" +
-														   "-Добавление Snackbar вместо Toast. \n" +
-														   "-Добавление действия к плавающей кнопке. \n" +
-														   "-Изменение значков, на более подходящие. \n" +
-														   "-Реализовать новый View-компонент."); //Сообщение диалога
+	
+	private void dialogInfo(){
+		AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this); //Строитель диалогов, принимающий контекст
+		adb.setTitle(R.string.app_name); //Заголовок диалога
+		adb.setIcon(R.drawable.ic_launcher); //Иконка диалога
+		adb.setMessage("Copyright © 2015 Ainc" + "\n\n" + "STE версия 0.8.2 \n" +
+															"Список изменений: \n" +
+														   "-Мелкие изменения \n");
 				//Добавляет нейтральную кнопку
-				adb.setNeutralButton(R.string.btn_good, new DialogInterface.OnClickListener(){ 
-					@Override
-					public void onClick(DialogInterface p1, int p2){	}
-					});
-				return adb.create(); //возвращает созданный диалог
-				
-		}
-		return super.onCreateDialog(id);
+		adb.setPositiveButton(R.string.btn_good, new DialogInterface.OnClickListener(){
+			@Override
+			public void onClick(DialogInterface p1, int p2){}
+		});
+		adb.show(); //возвращает созданный диалог
 	}
 	
 	//Метод, вызывающий диалог
