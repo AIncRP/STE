@@ -4,7 +4,7 @@
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/mainBackground">
+	android:id="@+id/fLayout">
 
 	<ScrollView
 		android:layout_height="match_parent"
@@ -24,14 +24,21 @@
 
 	</ScrollView>
 
-	<android.support.design.widget.FloatingActionButton
-		android:id="@+id/fab"	
-		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:layout_margin="20dp"
-		android:layout_gravity="bottom|end"
-		android:src="@drawable/ic_add_white_24dp"
-		app:pressedTranslationZ="12dp"/>
+	<android.support.design.widget.CoordinatorLayout
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:id="@+id/coordinator">
+	
+		<android.support.design.widget.FloatingActionButton
+			android:id="@+id/fab"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			style="@style/floating_action_button"
+			android:layout_gravity="bottom|end"
+			android:src="@drawable/ic_add_white_24dp"
+			app:pressedTranslationZ="12dp"/>
+	
+	</android.support.design.widget.CoordinatorLayout>
 
 </FrameLayout>
 

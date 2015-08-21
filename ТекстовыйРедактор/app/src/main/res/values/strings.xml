@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">Простой Текстовый Редактор</string>
 	
     <string name="safe">Сохранить</string>
@@ -10,6 +9,8 @@
 	<string name="exit">Выход</string>
 	<string name="choose">Выбрать</string>
 	<string name="close">Закрыть</string>
+	<string name="create">Создать</string>
+	<string name="colors">Цвета</string>
 	
 	<string name="saved">Сохранено!</string>
 	<string name="save_">Сохранить?</string>
@@ -19,8 +20,59 @@
 	<string name="yes">Да</string>
 	<string name="nope">Нет</string>
 	
+	<string name="backcolor">Цвет фона</string>
+	<string name="changecolor">Измените цвет фона для вашего удобства</string>
+	<string name="createnew">Создание нового файла</string>
 	<string name="notfiles">Нет файлов в каталоге!</string>
 	<string name="namefile">Введите имя файла</string>
 	<string name="copyright">Copyright © 2015 Ainc</string>
+	
+	<string-array
+		name="entries_colors">
+		<item>Белый</item>
+		<item>Красный</item>
+		<item>Розовый</item>
+		<item>Фиолетовый</item>
+		<item>Насыщенный фиолетовый</item>
+		<item>Индиго</item>
+		<item>Голубой</item>
+		<item>Светло-голубой</item>
+		<item>Бирюзовый</item>
+		<item>Сине-зеленый</item>
+		<item>Зеленый</item>
+		<item>Светло-зеленый</item>
+		<item>Лаймовый</item>
+		<item>Желтый</item>
+		<item>Янтарный</item>
+		<item>Оранжевый</item>
+		<item>Насыщенный оранжевый</item>
+		<item>Коричневый</item>
+		<item>Серый</item>
+		<item>Серо-голубой</item>
+	</string-array>
+	
+	<string-array
+		name="entry_values_colors">
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+		<item>6</item>
+		<item>7</item>
+		<item>8</item>
+		<item>9</item>
+		<item>10</item>
+		<item>11</item>
+		<item>12</item>
+		<item>13</item>
+		<item>14</item>
+		<item>15</item>
+		<item>16</item>
+		<item>17</item>
+		<item>18</item>
+		<item>19</item>
+		<item>20</item>
+	</string-array>
 	
 </resources>

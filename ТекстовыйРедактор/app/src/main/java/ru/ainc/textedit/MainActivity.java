@@ -1,25 +1,27 @@
 package ru.ainc.textedit;
 
+import android.*;
+import android.content.*;
+import android.graphics.*;
 import android.os.*;
+import android.support.design.widget.*;
 import android.support.v7.app.*;
 import android.view.*;
-import android.widget.EditText;
-import android.widget.Toast;
-import java.io.*;
-import android.app.Dialog;
 import android.view.View.*;
-import android.view.inputmethod.*;
+import android.widget.*;
 import ru.ainc.textedit.File.*;
-import android.support.v7.widget.*;
-import android.content.*;
-import android.support.design.widget.*;
 
-public class MainActivity extends AppCompatActivity{
+
+public class MainActivity extends AppCompatActivity
+{
 	
 	//Объявления классов
 	private EditText et; //Объявление поля ввода
 	private FileIO io; //Объявление моего класса для обработки файлов
 	private FloatingActionButton fab;
+	private FrameLayout fLayout;
+	private SharedPreferences prefs;
+	private View coordinator;
 	
 	private int position;
 	private String dir = "";
@@ -34,24 +36,31 @@ public class MainActivity extends AppCompatActivity{
 		
 		et = (EditText) findViewById(R.id.et); //Нахождение по id главное поле ввода
 		fab = (FloatingActionButton) findViewById(R.id.fab);
+		fLayout = (FrameLayout) findViewById(R.id.fLayout);
 		
 		dir = Environment.getExternalStorageDirectory().toString() + MY_DIRECTORY; //Путь к моей директории
 		//Иницилизация моего класса с обработкой файлов, 
 		//принимающий в конструкторе путь к моей директории
 		io = new FileIO(dir); 
+		
+		prefs = getSharedPreferences("ru.ainc.textedit_preferences", 0);
+		
+		fab.setBackgroundColor(Color.argb(255, 255, 64, 129));
+		fab.setOnClickListener(new OnClickListener(){
+			@Override
+			public void onClick(View v){
+				newFileDialog();
+			}
+		});
+		
+		coordinator = findViewById(R.id.coordinator);
     }
 	
 	
 	//Создает меню
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu){
-		
-		menu.add(0, 0, 0, R.string.safe).setIcon(android.support.v7.appcompat.R.drawable.abc_ic_menu_copy_mtrl_am_alpha).setAlphabeticShortcut('s').setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-		menu.add(1, 1, 0, R.string.open).setIcon(android.support.v7.appcompat.R.drawable.abc_ic_menu_paste_mtrl_am_alpha).setAlphabeticShortcut('o').setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
-// 		menu.add(0, 2, 0, R.string.options);
-		menu.add(0, 3, 0, R.string.info).setIcon(android.R.drawable.ic_menu_help).setAlphabeticShortcut('i');
-		menu.add(0, 4, 0, R.string.exit).setIcon(android.R.drawable.ic_menu_close_clear_cancel).setAlphabeticShortcut('e');
-		
+		getMenuInflater().inflate(R.menu.menu, menu);
 		return super.onCreateOptionsMenu(menu);
 	}
 
@@ -59,19 +68,19 @@ public class MainActivity extends AppCompatActivity{
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item){
 		switch(item.getItemId()){
-			case 0: 
+			case R.id.item1: 
 				saveDialog(); //переходит в метод
 				break;
-			case 1:
+			case R.id.item2:
 				openDialog();
 				break;
-			case 2:
-				//
+			case R.id.item3:
+				startActivity(new Intent(this, Preferences.class));
 				break;
-			case 3:
+			case R.id.item4:
 				dialogInfo();
 				break;
-			case 4:
+			case R.id.item5:
 				//Закрывает главное активити
 				MainActivity.this.finish();
 				break;
@@ -81,26 +90,22 @@ public class MainActivity extends AppCompatActivity{
 		return super.onOptionsItemSelected(item);
 	}
 
-	//Срабатывает при нажатии на "три точки"
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu){		
-		return super.onPrepareOptionsMenu(menu);
-	}
-
-	
 	private void dialogInfo(){
 		AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this); //Строитель диалогов, принимающий контекст
-		adb.setTitle(R.string.app_name); //Заголовок диалога
-		adb.setIcon(R.drawable.ic_launcher); //Иконка диалога
-		adb.setMessage("Copyright © 2015 Ainc" + "\n\n" + "STE версия 0.8.2 \n" +
-															"Список изменений: \n" +
-														   "-Мелкие изменения \n");
-				//Добавляет нейтральную кнопку
-		adb.setPositiveButton(R.string.btn_good, new DialogInterface.OnClickListener(){
+		adb.setTitle(R.string.app_name) //Заголовок диалога
+		   .setIcon(R.drawable.ic_launcher) //Иконка диалога
+		   .setMessage("Copyright © 2015 Ainc" + "\n\n" + "STE версия 0.9.5 \n" +
+														  "Список изменений: \n" +
+														  "-Теперь можно изменить цвет фона \n" +
+														  "-Создание новых файлов \n" +
+														  "-Автозапоминание последнего открытого файла \n" +
+														  "-Изменен цвет плавающей кнопки \n" +
+													      "-Toast -> Snackbar")
+			//Добавляет нейтральную кнопку
+		   .setPositiveButton(R.string.btn_good, new DialogInterface.OnClickListener(){
 			@Override
 			public void onClick(DialogInterface p1, int p2){}
-		});
-		adb.show(); //возвращает созданный диалог
+		}).show(); //возвращает созданный диалог
 	}
 	
 	//Метод, вызывающий диалог
@@ -113,25 +118,24 @@ public class MainActivity extends AppCompatActivity{
 		edt.setText(curFileName);
 		
 		AlertDialog.Builder adb2 = new AlertDialog.Builder(MainActivity.this); //создание нового диалога, примающий контекст
-		adb2.setView(root); //задаем view диалогу, который будет отображать его в себе
-		adb2.setTitle(R.string.save_); //Заголовок диалого
-		adb2.setCancelable(false); //Не закрывает диалог при нажатии на кнопку BACK
+		adb2.setView(root) //задаем view диалогу, который будет отображать его в себе
+	    .setTitle(R.string.save_) //Заголовок диалого
+		.setCancelable(false) //Не закрывает диалог при нажатии на кнопку BACK
 		//Создании кнопки, которая "позитивная"
-		adb2.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener(){ 
+			.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener(){ 
 			@Override
 			public void onClick(DialogInterface p1, int p2){
 				io.saveFile(et.getText().toString(), edt.getText().toString()); //ссылается на метод в классе FileIO, чтобы созранить файл с уникальным именем и текстом внутри него
-				Toast.makeText(MainActivity.this, R.string.saved, Toast.LENGTH_SHORT).show(); //Вызывает тост
+				Snackbar.make(coordinator, R.string.saved, Snackbar.LENGTH_SHORT).show();
 				setTitle(edt.getText().toString());
 			}
-		});
-		adb2.setNegativeButton(R.string.nope, new DialogInterface.OnClickListener(){
+		})
+			.setNegativeButton(R.string.nope, new DialogInterface.OnClickListener(){
 			@Override
 			public void onClick(DialogInterface p1, int p2)	{
 				
 			}
-		});
-		adb2.show(); //показывает диалог
+		}).show(); //показывает диалог
 	}
 	
 	private void openDialog(){
@@ -140,14 +144,14 @@ public class MainActivity extends AppCompatActivity{
 			if(files.length > 0){
 				position = 0;
 				AlertDialog.Builder adb3 = new AlertDialog.Builder(MainActivity.this);
-				adb3.setTitle(R.string.open);
-				adb3.setSingleChoiceItems(files, 0, new DialogInterface.OnClickListener(){
+				adb3.setTitle(R.string.open)
+					.setSingleChoiceItems(files, 0, new DialogInterface.OnClickListener(){
 					@Override
 					public void onClick(DialogInterface dialog, int item){
 						position = item;
 					}
-				});
-				adb3.setPositiveButton(R.string.choose, new DialogInterface.OnClickListener(){
+				})
+					.setPositiveButton(R.string.choose, new DialogInterface.OnClickListener(){
 					@Override
 					public void onClick(DialogInterface p1, int p2){
 						curFileName = files[position];
@@ -155,21 +159,134 @@ public class MainActivity extends AppCompatActivity{
 							et.setText(io.openFile(curFileName));
 						}catch(Exception e){}
 						setTitle(curFileName);
-						Toast.makeText(MainActivity.this, R.string.opened, Toast.LENGTH_SHORT).show();
+						Snackbar.make(coordinator, R.string.opened, Snackbar.LENGTH_SHORT).show();
 					}
-				});
-				adb3.setNegativeButton(R.string.close, new DialogInterface.OnClickListener(){
+				})
+					.setNegativeButton(R.string.close, new DialogInterface.OnClickListener(){
 					@Override
 					public void onClick(DialogInterface dialog, int item){
 						dialog.cancel();
 					}
-				});
-				adb3.setCancelable(false);
-				adb3.show();
+				}).setCancelable(false).show();
 			}else{
-				Toast.makeText(MainActivity.this, R.string.notfiles, Toast.LENGTH_SHORT).show();
+				Snackbar.make(coordinator, R.string.notfiles, Snackbar.LENGTH_SHORT).show();
 			}
 		}catch(Exception e){}
 	}
+	
+	private void newFileDialog(){
+		LayoutInflater inflater = this.getLayoutInflater(); 
+		View root = inflater.inflate(R.layout.newdialog, null); 
+
+		//объявляем поле ввода
+		final EditText edt = (EditText) root.findViewById(R.id.newDialogET);
+		
+		AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this); //Строитель диалогов, принимающий контекст
+		adb.setView(root)
+		.setTitle(R.string.createnew) 
+		.setCancelable(false)
+		.setPositiveButton(R.string.create, new DialogInterface.OnClickListener(){
+			@Override
+			public void onClick(DialogInterface p1, int p2){
+				curFileName = edt.getText().toString();
+				io.newFile(curFileName);
+				setTitle(curFileName);
+				et.setText("");
+			}
+		}).setNegativeButton(R.string.close,  new DialogInterface.OnClickListener(){
+			@Override
+			public void onClick(DialogInterface p1, int p2){	}
+		}).show();
+	}
+
+	@Override
+	protected void onResume(){
+		super.onResume();
+		settings();
+		String filename = prefs.getString("filename", "");
+		if(!filename.equals("")){
+			setTitle(filename);
+			curFileName = filename;
+			try{
+				et.setText(io.openFile(filename));
+			}catch(Exception e){}
+		}
+	}
+	
+	@Override
+	protected void onPause(){
+		super.onPause();
+		SharedPreferences.Editor editor = prefs.edit();
+		editor.putString("filename", curFileName);
+		editor.commit();
+	}
+	
+	
+	private void settings(){
+		switch(prefs.getString("pcolors", "")){
+			case "1":
+				fLayout.setBackgroundColor(Color.argb(255, 245, 245, 245));
+				break;
+			case "2":
+				fLayout.setBackgroundColor(Color.argb(255, 196, 20, 17));
+				break;
+			case "3":
+				fLayout.setBackgroundColor(Color.argb(255, 173, 20, 87));
+				break;
+			case "4":
+				fLayout.setBackgroundColor(Color.argb(255, 106, 27, 154));
+				break;
+			case "5":
+				fLayout.setBackgroundColor(Color.argb(255, 69, 39, 160));
+				break;
+			case "6":
+				fLayout.setBackgroundColor(Color.argb(255, 40, 53, 147));
+				break;
+			case "7":
+				fLayout.setBackgroundColor(Color.argb(255, 59, 80, 206));
+				break;
+			case "8":
+				fLayout.setBackgroundColor(Color.argb(255, 2, 119, 189));
+				break;
+			case "9":
+				fLayout.setBackgroundColor(Color.argb(255, 0, 131, 143));
+				break;
+			case "10":
+				fLayout.setBackgroundColor(Color.argb(255, 0, 105, 92));
+				break;
+			case "11":
+				fLayout.setBackgroundColor(Color.argb(255, 5, 111, 0));
+				break;
+			case "12":
+				fLayout.setBackgroundColor(Color.argb(255, 85, 139, 47));
+				break;
+			case "13":
+				fLayout.setBackgroundColor(Color.argb(255, 158, 157, 36));
+				break;
+			case "14":
+				fLayout.setBackgroundColor(Color.argb(255, 249, 168, 37));
+				break;
+			case "15":
+				fLayout.setBackgroundColor(Color.argb(255, 255, 143, 0));
+				break;
+			case "16":
+				fLayout.setBackgroundColor(Color.argb(255, 239, 108, 0));
+				break;
+			case "17":
+				fLayout.setBackgroundColor(Color.argb(255, 216, 67, 21));
+				break;
+			case "18":
+				fLayout.setBackgroundColor(Color.argb(255, 78, 52, 46));
+				break;
+			case "19":
+				fLayout.setBackgroundColor(Color.argb(255, 66, 66, 66));
+				break;
+			case "20":
+				fLayout.setBackgroundColor(Color.argb(255, 55, 71, 79));
+				break;
+		}
+		
+	}
+
 	
 }

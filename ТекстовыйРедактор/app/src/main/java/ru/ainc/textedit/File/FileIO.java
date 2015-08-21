@@ -18,6 +18,15 @@ public class FileIO{
 			folder.mkdir(); //то создать
 		}
 	}
+	
+	public void newFile(String FileName){
+		File file = new File(dir, FileName);
+		if(!file.exists()){
+			try{
+				file.createNewFile();
+			}catch(Exception e){}
+		}
+	}
 		
 	//сохраняет файл, принимает текст файла и имя файла
 	public void saveFile(String FileText, String FileName){

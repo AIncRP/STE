@@ -10,6 +10,8 @@
 	<string name="exit">Exit</string>
 	<string name="choose">Select</string>
 	<string name="close">Close</string>
+	<string name="create">Create</string>
+	<string name="colors">Colors</string>
 	
 	<string name="saved">It\'s kept!</string>
 	<string name="save_">Rename file?</string>
@@ -19,8 +21,59 @@
 	<string name="yes">Save</string>
 	<string name="nope">Discard</string>
 	
+	<string name="backcolor">Background color</string>
+	<string name="createnew">Create new file</string>
+	<string name="changecolor">Change background color for your comfort</string>
 	<string name="notfiles">The directory is empty!</string>
 	<string name="namefile">Enter a file name</string>
 	<string name="copyright">Copyright © 2015 Ainc</string>
+	
+	<string-array
+		name="entries_colors">
+		<item>Google grey</item>
+		<item>Red</item>
+		<item>Pink</item>
+		<item>Purple</item>
+		<item>Deep purple</item>
+		<item>Indigo</item>
+		<item>Blue</item>
+		<item>Light blue</item>
+		<item>Cyan</item>
+		<item>Teal</item>
+		<item>Green</item>
+		<item>Light green</item>
+		<item>Lime</item>
+		<item>Yellow</item>
+		<item>Amber</item>
+		<item>Orange</item>
+		<item>Deep orange</item>
+		<item>Brown</item>
+		<item>Grey</item>
+		<item>Blue grey</item>
+	</string-array>
+
+	<string-array
+		name="entry_values_colors">
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+		<item>4</item>
+		<item>5</item>
+		<item>6</item>
+		<item>7</item>
+		<item>8</item>
+		<item>9</item>
+		<item>10</item>
+		<item>11</item>
+		<item>12</item>
+		<item>13</item>
+		<item>14</item>
+		<item>15</item>
+		<item>16</item>
+		<item>17</item>
+		<item>18</item>
+		<item>19</item>
+		<item>20</item>
+	</string-array>
 	
 </resources>

@@ -1,0 +1,29 @@
+<menu 
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:ainc="http://schemas.android.com/apk/res-auto">
+    
+    <item
+        android:id="@+id/item1"
+        android:title="@string/safe"
+		android:icon="@drawable/ic_content_save"
+		ainc:showAsAction="ifRoom|withText"/>
+	
+	<item
+        android:id="@+id/item2"
+        android:title="@string/open"
+		android:icon="@drawable/ic_window_open"
+		ainc:showAsAction="ifRoom|withText"/>
+	
+	<item
+        android:id="@+id/item3"
+        android:title="@string/options"/>
+	
+	<item
+        android:id="@+id/item4"
+        android:title="@string/info"/>
+	
+	<item
+        android:id="@+id/item5"
+        android:title="@string/exit"/>
+    
+</menu>
