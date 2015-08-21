@@ -3,7 +3,7 @@
 		android:title="@string/colors">
 		<ListPreference
 			android:key="pcolors"
-			android:title="string/@backcolor"
+			android:title="@string/backcolor"
 			android:summary="@string/changecolor"
 			android:entries="@array/entries_colors"
 			android:entryValues="@array/entry_values_colors"

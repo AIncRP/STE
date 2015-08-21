@@ -1,4 +1,4 @@
-# STE
+# STE 0.9.6
 Simple Text Editor for Android OS
 
 # Changelog
@@ -7,3 +7,4 @@ Simple Text Editor for Android OS
 -Автозапоминание последнего открытого файла
 -Изменен цвет плавающей кнопки
 -Toast -> Snackbar
+-Исправлен текст в настройках

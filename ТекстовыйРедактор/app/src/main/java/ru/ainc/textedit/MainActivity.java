@@ -94,13 +94,14 @@ public class MainActivity extends AppCompatActivity
 		AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this); //Строитель диалогов, принимающий контекст
 		adb.setTitle(R.string.app_name) //Заголовок диалога
 		   .setIcon(R.drawable.ic_launcher) //Иконка диалога
-		   .setMessage("Copyright © 2015 Ainc" + "\n\n" + "STE версия 0.9.5 \n" +
+		   .setMessage("Copyright © 2015 Ainc" + "\n\n" + "STE версия 0.9.6 \n" +
 														  "Список изменений: \n" +
 														  "-Теперь можно изменить цвет фона \n" +
 														  "-Создание новых файлов \n" +
 														  "-Автозапоминание последнего открытого файла \n" +
 														  "-Изменен цвет плавающей кнопки \n" +
-													      "-Toast -> Snackbar")
+													      "-Toast -> Snackbar \n" +
+														  "-Исправлен текст в настройках")
 			//Добавляет нейтральную кнопку
 		   .setPositiveButton(R.string.btn_good, new DialogInterface.OnClickListener(){
 			@Override
