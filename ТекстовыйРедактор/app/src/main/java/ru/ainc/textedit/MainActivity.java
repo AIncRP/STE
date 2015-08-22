@@ -10,6 +10,7 @@ import android.view.*;
 import android.view.View.*;
 import android.widget.*;
 import ru.ainc.textedit.File.*;
+import android.content.res.*;
 
 
 public class MainActivity extends AppCompatActivity
@@ -44,8 +45,7 @@ public class MainActivity extends AppCompatActivity
 		io = new FileIO(dir); 
 		
 		prefs = getSharedPreferences("ru.ainc.textedit_preferences", 0);
-		
-		fab.setBackgroundColor(Color.argb(255, 255, 64, 129));
+		fab.setBackgroundTintList(ColorStateList.valueOf(Color.argb(255, 255, 64, 129)));
 		fab.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View v){
@@ -94,14 +94,8 @@ public class MainActivity extends AppCompatActivity
 		AlertDialog.Builder adb = new AlertDialog.Builder(MainActivity.this); //Строитель диалогов, принимающий контекст
 		adb.setTitle(R.string.app_name) //Заголовок диалога
 		   .setIcon(R.drawable.ic_launcher) //Иконка диалога
-		   .setMessage("Copyright © 2015 Ainc" + "\n\n" + "STE версия 0.9.6 \n" +
-														  "Список изменений: \n" +
-														  "-Теперь можно изменить цвет фона \n" +
-														  "-Создание новых файлов \n" +
-														  "-Автозапоминание последнего открытого файла \n" +
-														  "-Изменен цвет плавающей кнопки \n" +
-													      "-Toast -> Snackbar \n" +
-														  "-Исправлен текст в настройках")
+		   .setMessage("Copyright © 2015 Ainc" + "\n\n" + "STE версия 0.9.7 \n" +
+														  "-Исправлены ошибки")
 			//Добавляет нейтральную кнопку
 		   .setPositiveButton(R.string.btn_good, new DialogInterface.OnClickListener(){
 			@Override
